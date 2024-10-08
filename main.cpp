@@ -10,7 +10,7 @@ struct node {
 
 
 template <class T>
-class CCList {
+class CLList {
 private:
     node<T>* first;
     int length;
@@ -25,10 +25,10 @@ public:
 
 
 
-    CCList();
-    ~CCList();
-    CCList(const & CCList<T>);
-    const & CCList<T> operator=(const & CCList<T>);
+    CLList();
+    ~CLList();
+    CLList(const & CLList<T>);
+    const & CLList<T> operator=(const & CLList<T>);
 
 };
 
