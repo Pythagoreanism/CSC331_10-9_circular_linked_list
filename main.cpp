@@ -4,7 +4,7 @@ using namespace std;
 
 template <class T>
 struct node {
-    item T;
+    T item;
     node<T>* next;
 };
 
@@ -34,7 +34,7 @@ public:
 
 
 int main() {
-    cout << "Hello world" << endl;
+    CLList<int> list;
 
     return 0;
 }
