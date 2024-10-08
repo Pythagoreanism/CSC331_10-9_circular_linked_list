@@ -22,13 +22,13 @@ public:
     void printList() const;
     bool searchItem(T) const;
     bool isEmpty() const;
-
-
+    void destroy();
+    void copy();
 
     CLList();
     ~CLList();
-    CLList(const & CLList<T>);
-    const & CLList<T> operator=(const & CLList<T>);
+    CLList(const CLList<T> &);
+    const CLList<T> & operator=(const CLList &);
 
 };
 
