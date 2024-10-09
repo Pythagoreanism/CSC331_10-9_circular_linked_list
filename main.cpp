@@ -64,9 +64,18 @@ void CLList<T>::insertItem(T itemToInsert) {
             p->next = first->next;
             first->next = p;
         }
-        else {
-            // Item is between smallest and largest item in list
+        else { // Item is between smallest and largest item in list
+            node<T>* q = first->next;
+            node<T>* r = first; // To access node before q
+
             // Traverse until spot based on value is found
+            while (p->info > q->info) {
+                q = q->next;
+                r = r->next;
+            }
+
+            p->next = q;
+            r->next = p;
         }
     }
 
@@ -134,12 +143,17 @@ int main() {
     CLList<int> list4;
 
     list4.insertItem(10); list4.insertItem(20);
-    list4.insertItem(30);
+    list4.insertItem(30); // Inserting item greater than largest
 
     CLList<int> list5;
 
     list5.insertItem(10); list5.insertItem(20);
-    list5.insertItem(5);
+    list5.insertItem(5); // Inserting item lower than smallest
+
+    CLList<int> list6;
+    list6.insertItem(10); list6.insertItem(20); 
+    list6.insertItem(30); list6.insertItem(40);
+    list6.insertItem(25); // Inserting item between two items
 
     return 0;
 }
