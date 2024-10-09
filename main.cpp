@@ -43,17 +43,6 @@ void CLList<T>::insertItem(T itemToInsert) {
         first = p;
         first->next = first;
     }
-    else if (first == first->next) { // List contains one node
-        if (itemToInsert < first->info) { // Item is less than existing item
-            first->next = p;
-            p->next = first;
-        }
-        else { // Item is more than existing item
-            first->next = p;
-            p->next = first;
-            first = p;
-        }
-    }
     else { // List contains more than 1 node
         if (itemToInsert > first->info) { // Item is greater than largest item in list
             p->next = first->next;
