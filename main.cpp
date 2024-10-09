@@ -94,9 +94,7 @@ bool CLList<T>::searchItem(T itemToSearch) const {
     // TODO: Define function
 }
 template <class T>
-bool CLList<T>::isEmpty() const {
-    // TODO: Define function
-}
+bool CLList<T>::isEmpty() const { return length == 0; }
 template <class T>
 void CLList<T>::destroy() {
     // TODO: Define function
