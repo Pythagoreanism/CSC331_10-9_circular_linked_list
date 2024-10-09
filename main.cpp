@@ -76,7 +76,19 @@ void CLList<T>::deleteItem(T itemToDelete) {
 }
 template <class T>
 void CLList<T>::printList() const {
-    // TODO: Define function
+    if (first == nullptr) {
+        cout << "List is empty!" << endl;
+    }
+    else {
+        node<T>* p = first->next; // Start after largest
+        
+        do {
+            cout << "[" << p->info << "]->";
+            p = p->next;
+        } while (p != first->next);
+
+        cout << '\n';
+    }
 }
 template <class T>
 bool CLList<T>::searchItem(T itemToSearch) const {
@@ -116,31 +128,43 @@ int main() {
     cout << "Length: " << list.getLength() << endl;
 
     list.insertItem(5); // Inserting empty list
+    list.printList();
 
     CLList<int> list2;
     
     list2.insertItem(2);
     list2.insertItem(1); // Inserting item less than existing item
 
+    list2.printList();
+
     CLList<int> list3;
 
     list3.insertItem(2);
     list3.insertItem(3); // Inserting item greater than existing item
+
+    list3.printList();
 
     CLList<int> list4;
 
     list4.insertItem(10); list4.insertItem(20);
     list4.insertItem(30); // Inserting item greater than largest
 
+    list4.printList();
+
     CLList<int> list5;
 
     list5.insertItem(10); list5.insertItem(20);
     list5.insertItem(5); // Inserting item lower than smallest
 
+    list5.printList();
+
     CLList<int> list6;
+    
     list6.insertItem(10); list6.insertItem(20); 
     list6.insertItem(30); list6.insertItem(40);
     list6.insertItem(25); // Inserting item between two items
+
+    list6.printList();
 
     return 0;
 }
