@@ -36,26 +36,33 @@ template <class T>
 int CLList<T>::getLength() const { return length; }
 template <class T>
 void CLList<T>::insertItem(T itemToInsert) {
-    first = new node<T>;
-    first->info = itemToInsert;
+    node<T>* p = new node<T>;
+    p->info = itemToInsert;
     
     if (length == 0 && first == nullptr) { // List is empty
+        first = p;
         first->next = first;
     }
     else if (first == first->next) { // List contains one node
-        if (itemToInsert < first->info) {
-            // Item is less than existing item
+        if (itemToInsert < first->info) { // Item is less than existing item
+            first->next = p;
+            p->next = first;
         }
-        else {
-            // Item is more than existing item
+        else { // Item is more than existing item
+            first->next = p;
+            p->next = first;
+            first = p;
         }
     }
     else { // List contains more than 1 node
-        if (itemToInsert > first->info) {
-            // Item is greater than largest item in list
+        if (itemToInsert > first->info) { // Item is greater than largest item in list
+            p->next = first->next;
+            first->next = p;
+            first = p;
         }
-        else if (itemToInsert < first->next->info) {
-            // Item is less than smallest item in list
+        else if (itemToInsert < first->next->info) { // Item is less than smallest item in list
+            p->next = first->next;
+            first->next = p;
         }
         else {
             // Item is between smallest and largest item in list
@@ -112,7 +119,27 @@ int main() {
 
     cout << "Length: " << list.getLength() << endl;
 
-    list.insertItem(5);
+    list.insertItem(5); // Inserting empty list
+
+    CLList<int> list2;
+    
+    list2.insertItem(2);
+    list2.insertItem(1); // Inserting item less than existing item
+
+    CLList<int> list3;
+
+    list3.insertItem(2);
+    list3.insertItem(3); // Inserting item greater than existing item
+
+    CLList<int> list4;
+
+    list4.insertItem(10); list4.insertItem(20);
+    list4.insertItem(30);
+
+    CLList<int> list5;
+
+    list5.insertItem(10); list5.insertItem(20);
+    list5.insertItem(5);
 
     return 0;
 }
