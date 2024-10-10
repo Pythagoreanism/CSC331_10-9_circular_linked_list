@@ -92,7 +92,20 @@ void CLList<T>::printList() const {
 }
 template <class T>
 bool CLList<T>::searchItem(T itemToSearch) const {
-    // TODO: Define function
+    if (first == nullptr || itemToSearch > first->info ||
+        itemToSearch < first->next->info) {
+        return false;
+    }
+
+    node<T>* p = first->next; // Start after largest
+    do {
+        if (p->info == itemToSearch) {
+            return true;
+        }
+        p = p->next;
+    } while (p != first->next);
+
+    return false;
 }
 template <class T>
 bool CLList<T>::isEmpty() const { return length == 0; }
@@ -165,6 +178,15 @@ int main() {
     list6.insertItem(25); // Inserting item between two items
 
     list6.printList();
+
+    cout << list6.searchItem(5)  << endl; // Expected: 0
+    cout << list6.searchItem(10) << endl; // Expected: 1
+    cout << list6.searchItem(20) << endl; // Expected: 1
+    cout << list6.searchItem(25) << endl; // Expected: 1
+    cout << list6.searchItem(30) << endl; // Expected: 1
+    cout << list6.searchItem(35) << endl; // Expected: 0
+    cout << list6.searchItem(40) << endl; // Expected: 1
+    cout << list6.searchItem(45) << endl; // Expected: 0
 
     return 0;
 }
