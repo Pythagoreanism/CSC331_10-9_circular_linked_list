@@ -16,16 +16,16 @@ private:
     int length;
 
 public:
-    int getLength() const;
-    void insertItem(T);
+    int getLength() const; // Done
+    void insertItem(T); // Done
     void deleteItem(T);
-    void printList() const;
-    bool searchItem(T) const;
-    bool isEmpty() const;
+    void printList() const; // Done
+    bool searchItem(T) const; // Done
+    bool isEmpty() const; // Done
     void destroy();
     void copy();
 
-    CLList();
+    CLList(); // Done
     //~CLList();
     CLList(const CLList<T> &);
     const CLList<T> & operator=(const CLList &);
@@ -72,7 +72,32 @@ void CLList<T>::insertItem(T itemToInsert) {
 }
 template <class T>
 void CLList<T>::deleteItem(T itemToDelete) {
-    // TODO: Define function
+    if (first == nullptr) {
+        cout << "List is empty!" << endl;
+    }
+    else if (itemToDelete > first->info || 
+             itemToDelete < first->next->info) {
+        cout << "Item not found!" << endl;
+    }
+    else {
+        node<T>* p = first->next;
+        node<T>* q = first;
+
+        while (q->next != first && p->info < itemToDelete) {            
+            p = p->next;
+            q = q->next;
+        }
+        
+        if (p->info == itemToDelete) {
+            q->next = p->next;
+            delete p;
+            length--;
+            cout << "Item deleted successfully." << endl;
+        }
+        else {
+            cout << "Item not found!" << endl;
+        }
+    }
 }
 template <class T>
 void CLList<T>::printList() const {
@@ -187,6 +212,34 @@ int main() {
     cout << list6.searchItem(35) << endl; // Expected: 0
     cout << list6.searchItem(40) << endl; // Expected: 1
     cout << list6.searchItem(45) << endl; // Expected: 0
+
+    CLList<int> list7;
+
+    list7.insertItem(10); list7.insertItem(20);
+    list7.insertItem(30); list7.insertItem(40);
+
+    list7.deleteItem(0); // Delete item less than lowest item
+
+    CLList<int> list8;
+
+    list8.insertItem(10); list8.insertItem(20);
+    list8.insertItem(30); list8.insertItem(40);
+
+    list8.deleteItem(10); // Delete item in list
+
+    CLList<int> list9;
+
+    list9.insertItem(10); list9.insertItem(20);
+    list9.insertItem(30); list9.insertItem(40);
+
+    list9.deleteItem(35); // Delete item not in list REDO THIS TEST
+
+    CLList<int> list10;
+
+    list10.insertItem(10); list10.insertItem(20);
+    list10.insertItem(30); list10.insertItem(40);
+
+    list10.deleteItem(50); // Delete item greater than largest item
 
     return 0;
 }
