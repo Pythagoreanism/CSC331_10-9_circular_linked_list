@@ -18,7 +18,7 @@ private:
 public:
     int getLength() const; // Done
     void insertItem(T); // Done
-    void deleteItem(T);
+    void deleteItem(T); // Done
     void printList() const; // Done
     bool searchItem(T) const; // Done
     bool isEmpty() const; // Done
@@ -26,7 +26,7 @@ public:
     void copy();
 
     CLList(); // Done
-    //~CLList();
+    ~CLList();
     CLList(const CLList<T> &);
     const CLList<T> & operator=(const CLList &);
 
@@ -136,7 +136,17 @@ template <class T>
 bool CLList<T>::isEmpty() const { return length == 0; }
 template <class T>
 void CLList<T>::destroy() {
-    // TODO: Define function
+    node<T>* p = first->next;
+
+    while (p != first) {
+        first->next = p->next;
+        delete p;
+        p = first->next;
+        cout << "Deleting" << endl;
+    }
+    delete first;
+
+    length = 0;
 }
 template <class T>
 void CLList<T>::copy() {
@@ -146,13 +156,11 @@ void CLList<T>::copy() {
 
 template <class T>
 CLList<T>::CLList() : first(nullptr), length(0) {}
-/* template <class T>
-CLList<T>::~CLList() {
-    // TODO: Define function
-} */
+template <class T>
+CLList<T>::~CLList() { destroy(); }
 template <class T>
 CLList<T>::CLList(const CLList<T> & right) {
-    // TODO: Define function
+    copy();
 }
 template <class T>
 const CLList<T> & CLList<T>::operator=(const CLList<T> & right) {
