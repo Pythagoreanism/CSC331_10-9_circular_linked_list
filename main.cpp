@@ -16,19 +16,19 @@ private:
     int length;
 
 public:
-    int getLength() const; // Done
-    void insertItem(T); // Done
-    void deleteItem(T); // Done
-    void printList() const; // Done
-    bool searchItem(T) const; // Done
-    bool isEmpty() const; // Done
+    int getLength() const;
+    void insertItem(T);
+    void deleteItem(T);
+    void printList() const;
+    bool searchItem(T) const;
+    bool isEmpty() const;
     void destroy();
-    void copy();
+    void copy(const CLList<T> &); // TODO: Finish defining this
 
-    CLList(); // Done
+    CLList();
     ~CLList();
-    CLList(const CLList<T> &);
-    const CLList<T> & operator=(const CLList &);
+    CLList(const CLList<T> &); // TODO: Finish defining this
+    const CLList<T> & operator=(const CLList &); // TODO: Finish defining this
 
 };
 
@@ -149,8 +149,18 @@ void CLList<T>::destroy() {
     length = 0;
 }
 template <class T>
-void CLList<T>::copy() {
-    // TODO: Define function
+void CLList<T>::copy(const CLList<T> & other) { // TODO: Finish this
+    length = other.length;
+
+    if (&other.first == nullptr) { // List is empty
+        first = nullptr;
+    }
+    else if (&other == this) { // Can't copy itself
+        return this;
+    }
+    else {
+        // TODO: FINISH THIS
+    }
 }
 
 
@@ -159,9 +169,7 @@ CLList<T>::CLList() : first(nullptr), length(0) {}
 template <class T>
 CLList<T>::~CLList() { destroy(); }
 template <class T>
-CLList<T>::CLList(const CLList<T> & right) {
-    copy();
-}
+CLList<T>::CLList(const CLList<T> & right) { copy(right); }
 template <class T>
 const CLList<T> & CLList<T>::operator=(const CLList<T> & right) {
     // TODO: Define function
