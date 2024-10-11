@@ -3,8 +3,15 @@
 #include <iostream>
 
 
+/**
+ * \return The number of items on the list
+ */
 template <class T>
 int CLList<T>::getLength() const { return length; }
+/**
+ * \brief Insert an item to the list
+ * \param itemToInsert The item being inserted to the list
+ */
 template <class T>
 void CLList<T>::insertItem(T itemToInsert) {
     node<T>* p = new node<T>;
@@ -41,6 +48,10 @@ void CLList<T>::insertItem(T itemToInsert) {
 
     length++;
 }
+/**
+ * \brief Deletes an item on the list
+ * \param itemToDelete The item to be deleted on the list
+ */
 template <class T>
 void CLList<T>::deleteItem(T itemToDelete) {
     if (first == nullptr) {
@@ -70,6 +81,9 @@ void CLList<T>::deleteItem(T itemToDelete) {
         }
     }
 }
+/**
+ * \brief Prints the list
+ */
 template <class T>
 void CLList<T>::printList() const {
     if (first == nullptr) {
@@ -86,6 +100,12 @@ void CLList<T>::printList() const {
         std::cout << '\n';
     }
 }
+/**
+ * \brief Searches if an item exists on the list
+ * \param itemToSearch Item to search on the list
+ * \retval true If item is on the list
+ * \retval false If the item is not on the list
+ */
 template <class T>
 bool CLList<T>::searchItem(T itemToSearch) const {
     if (first == nullptr || itemToSearch > first->info ||
@@ -103,8 +123,18 @@ bool CLList<T>::searchItem(T itemToSearch) const {
 
     return false;
 }
+/**
+ * \brief Checks if the list is empty
+ * \retval true If the list doesn't have any items
+ * \retval false If the list contains an item or more
+ */
 template <class T>
 bool CLList<T>::isEmpty() const { return length == 0; }
+/**
+ * \brief Destroys the list. Used in the destructor and operator overload
+ * \ref ~CLList()
+ * \ref operator=()
+ */
 template <class T>
 void CLList<T>::destroy() {
     node<T>* p = first->next;
@@ -119,6 +149,10 @@ void CLList<T>::destroy() {
 
     length = 0;
 }
+/**
+ * \brief Copies a list. Used in copy constructor and operator overload
+ * \param other The list being copied from
+ */
 template <class T>
 void CLList<T>::copy(const CLList<T> & other) {
     length = other.length;
@@ -144,12 +178,26 @@ void CLList<T>::copy(const CLList<T> & other) {
 }
 
 
+/**
+ * \brief Default constructor
+ */
 template <class T>
 CLList<T>::CLList() : first(nullptr), length(0) {}
+/**
+ * \brief Destructor
+ */
 template <class T>
 CLList<T>::~CLList() { destroy(); }
+/**
+ * \brief Copy constructor
+ */
 template <class T>
 CLList<T>::CLList(const CLList<T> & other) { copy(other); }
+/**
+ * \brief Operator overload, allows copy assigment of list objects
+ * \param right The object being copied from. Right side of assignment
+ * \return An constant instance of a CLList object
+ */
 template <class T>
 const CLList<T> & CLList<T>::operator=(const CLList<T> & right) {
     if (this != &right) { // If self-copy, returns itself

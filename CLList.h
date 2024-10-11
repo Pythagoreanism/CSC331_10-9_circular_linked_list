@@ -3,7 +3,9 @@
 
 #include "node.h"
 
-
+/**
+ * \brief A sorted Circular Linked List
+ */
 template <class T>
 class CLList {
 private:
