@@ -123,11 +123,23 @@ template <class T>
 void CLList<T>::copy(const CLList<T> & other) { // TODO: Finish this
     length = other.length;
 
-    if (&other.first == nullptr) { // List is empty
+    if (other.first == nullptr) { // List is empty
         first = nullptr;
     }
     else {
-        // TODO: FINISH THIS
+        first = new node<T>;
+        first->info = other.first->info;
+        node<T>* p = first; // Pointer to traverse this object
+        node<T>* q = other.first->next; // Pointer to traverse object being copied from
+
+        while (q != other.first) {
+            p->next = new node<T>;
+            p->next->info = q->info;
+            p = p->next; // Traverse
+            q = q->next; // Traverse
+        }
+
+        p->next = first;
     }
 }
 

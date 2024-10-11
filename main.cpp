@@ -85,5 +85,15 @@ int main() {
 
     list10.deleteItem(50); // Delete item greater than largest item
 
+    CLList<int> list11; // Object with one item
+    list11.insertItem(10);
+    list11.insertItem(20);
+    list11.insertItem(30);
+
+    CLList<int> list12(list11); // Copy object with copy constructor
+
+    list11.insertItem(40); // Test insert with original
+    list12.insertItem(50); // Test insert with copy
+
     return 0;
 }
