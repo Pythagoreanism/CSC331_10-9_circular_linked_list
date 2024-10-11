@@ -95,5 +95,18 @@ int main() {
     list11.insertItem(40); // Test insert with original
     list12.insertItem(50); // Test insert with copy
 
+    CLList<int> list13, list14;
+    list13.insertItem(10);
+    list13.insertItem(20);
+    list13.insertItem(30);
+
+    list14 = list13;
+
+    cout << "List 13:\n" << endl;
+    list13.printList();
+
+    cout << "List 14:\n" << endl;
+    list14.printList();
+
     return 0;
 }

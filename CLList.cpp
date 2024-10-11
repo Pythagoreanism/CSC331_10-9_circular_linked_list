@@ -120,7 +120,7 @@ void CLList<T>::destroy() {
     length = 0;
 }
 template <class T>
-void CLList<T>::copy(const CLList<T> & other) { // TODO: Finish this
+void CLList<T>::copy(const CLList<T> & other) {
     length = other.length;
 
     if (other.first == nullptr) { // List is empty
@@ -149,8 +149,15 @@ CLList<T>::CLList() : first(nullptr), length(0) {}
 template <class T>
 CLList<T>::~CLList() { destroy(); }
 template <class T>
-CLList<T>::CLList(const CLList<T> & right) { copy(right); }
+CLList<T>::CLList(const CLList<T> & other) { copy(other); }
 template <class T>
 const CLList<T> & CLList<T>::operator=(const CLList<T> & right) {
-    // TODO: Define function
+    if (this != &right) { // If self-copy, returns itself
+        if (first != nullptr) { // Won't call destroy if list is empty
+            destroy();
+        }
+        copy(right);
+    }
+
+    return *this;
 }

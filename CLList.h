@@ -18,12 +18,12 @@ public:
     bool searchItem(T) const;
     bool isEmpty() const;
     void destroy();
-    void copy(const CLList<T> &); // TODO: Finish defining this
+    void copy(const CLList<T> &);
 
     CLList();
     ~CLList();
-    CLList(const CLList<T> &); // TODO: Finish defining this
-    const CLList<T> & operator=(const CLList &); // TODO: Finish defining this
+    CLList(const CLList<T> &);
+    const CLList<T> & operator=(const CLList &);
 
 };
 
