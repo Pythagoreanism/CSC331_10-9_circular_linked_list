@@ -36,7 +36,7 @@ void CLList<T>::insertItem(T itemToInsert) {
             node<T>* r = first; // To access node before q
 
             // Traverse until spot based on value is found
-            while (p->info > q->info) {
+            while (itemToInsert > q->info) {
                 q = q->next;
                 r = r->next;
             }
@@ -201,7 +201,7 @@ CLList<T>::CLList(const CLList<T> & other) { copy(other); }
 template <class T>
 const CLList<T> & CLList<T>::operator=(const CLList<T> & right) {
     if (this != &right) { // If self-copy, returns itself
-        if (first != nullptr) { // Won't call destroy if list is empty
+        if (first != nullptr) { // Won't call destroy if list isn't empty
             destroy();
         }
         copy(right);
