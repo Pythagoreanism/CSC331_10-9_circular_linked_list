@@ -137,17 +137,19 @@ bool CLList<T>::isEmpty() const { return length == 0; }
  */
 template <class T>
 void CLList<T>::destroy() {
-    node<T>* p = first->next;
+    if (first != nullptr) { // If list isn't empty
+        node<T>* p = first->next;
 
-    while (p != first) {
-        first->next = p->next;
-        delete p;
-        p = first->next;
+        while (p != first) {
+            first->next = p->next;
+            delete p;
+            p = first->next;
+        }
+        delete first;
+        std::cout << "List destroyed." << std::endl;
+
+        length = 0;
     }
-    delete first;
-    std::cout << "List destroyed." << std::endl;
-
-    length = 0;
 }
 /**
  * \brief Copies a list. Used in copy constructor and operator overload
@@ -201,9 +203,7 @@ CLList<T>::CLList(const CLList<T> & other) { copy(other); }
 template <class T>
 const CLList<T> & CLList<T>::operator=(const CLList<T> & right) {
     if (this != &right) { // If self-copy, returns itself
-        if (first != nullptr) { // Won't call destroy if list isn't empty
-            destroy();
-        }
+        destroy();
         copy(right);
     }
 

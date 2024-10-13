@@ -190,5 +190,8 @@ int main() {
     cout << "\nList 14 (copy):\n" << endl;
     list14.printList();
 
+    // Test destructor/destroy
+    CLList<int> list15; // Empty list
+
     return 0;
 }
