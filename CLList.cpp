@@ -70,7 +70,14 @@ void CLList<T>::deleteItem(T itemToDelete) {
             q = q->next;
         }
         
-        if (p->info == itemToDelete) {
+        if (first->info == itemToDelete) {
+            q->next = p->next;
+            delete p;
+            first = q;
+            length--;
+            std::cout << "Item deleted successfully (largest)" << std::endl;
+        }
+        else if (p->info == itemToDelete) {
             q->next = p->next;
             delete p;
             length--;

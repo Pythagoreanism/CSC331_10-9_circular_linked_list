@@ -105,7 +105,7 @@ int main() {
     cout << "Before delete:\n" << endl;
     list8.printList();
 
-    list8.deleteItem(10);
+    list8.deleteItem(40);
 
     cout << "After delete:\n" << endl;
     list8.printList();
